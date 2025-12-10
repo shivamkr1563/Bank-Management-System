@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SCBOI Bank</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <h2>SCBOI Bank</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showSection('overview')" class="active">
+                    <i class="fas fa-home"></i> Overview
+                </a></li>
+                <li><a href="#" onclick="showSection('deposit')">
+                    <i class="fas fa-plus-circle"></i> Deposit
+                </a></li>
+                <li><a href="#" onclick="showSection('withdraw')">
+                    <i class="fas fa-minus-circle"></i> Withdraw
+                </a></li>
+                <li><a href="#" onclick="showSection('transfer')">
+                    <i class="fas fa-exchange-alt"></i> Transfer
+                </a></li>
+                <li><a href="#" onclick="showSection('history')">
+                    <i class="fas fa-history"></i> Transactions
+                </a></li>
+                <li><a href="#" onclick="showSection('statement')">
+                    <i class="fas fa-file-alt"></i> Statement
+                </a></li>
+                <li><a href="#" onclick="showSection('interest')">
+                    <i class="fas fa-percentage"></i> Interest
+                </a></li>
+                <li><a href="#" onclick="showSection('profile')">
+                    <i class="fas fa-user"></i> Profile
+                </a></li>
+            </ul>
+            <button onclick="logout()" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </nav>
+
+        <main class="main-dashboard">
+            <header class="dashboard-header">
+                <h1>Account Dashboard</h1>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="userName">Welcome, User</span>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="dashboard-section active">
+                <div class="stats-grid">
+                    <div class="stat-card balance-card">
+                        <i class="fas fa-wallet"></i>
+                        <h3>Current Balance</h3>
+                        <p class="stat-value" id="currentBalance">$0.00</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h3>Total Transactions</h3>
+                        <p class="stat-value" id="totalTransactions">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Account Number</h3>
+                        <p class="stat-value" id="accountNum">N/A</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button onclick="showSection('deposit')" class="action-btn">
+                            <i class="fas fa-plus-circle"></i> Deposit
+                        </button>
+                        <button onclick="showSection('withdraw')" class="action-btn">
+                            <i class="fas fa-minus-circle"></i> Withdraw
+                        </button>
+                        <button onclick="showSection('transfer')" class="action-btn">
+                            <i class="fas fa-exchange-alt"></i> Transfer
+                        </button>
+                        <button onclick="showSection('statement')" class="action-btn">
+                            <i class="fas fa-file-alt"></i> Statement
+                        </button>
+                    </div>
+                </div>
+
+                <div class="recent-transactions">
+                    <h3>Recent Transactions</h3>
+                    <div id="recentTransList" class="trans-list">
+                        <p class="no-data">No recent transactions</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deposit Section -->
+            <section id="deposit" class="dashboard-section">
+                <div class="operation-card">
+                    <h2><i class="fas fa-plus-circle"></i> Deposit Money</h2>
+                    <form id="depositForm" class="operation-form">
+                        <div class="form-group">
+                            <label>Current Balance</label>
+                            <input type="text" id="depositBalance" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="depositAmount">Amount to Deposit *</label>
+                            <input type="number" id="depositAmount" placeholder="Enter amount" min="1" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Deposit
+                        </button>
+                    </form>
+                    <div id="depositMessage" class="message"></div>
+                </div>
+            </section>
+
+            <!-- Withdraw Section -->
+            <section id="withdraw" class="dashboard-section">
+                <div class="operation-card">
+                    <h2><i class="fas fa-minus-circle"></i> Withdraw Money</h2>
+                    <form id="withdrawForm" class="operation-form">
+                        <div class="form-group">
+                            <label>Available Balance</label>
+                            <input type="text" id="withdrawBalance" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="withdrawAmount">Amount to Withdraw *</label>
+                            <input type="number" id="withdrawAmount" placeholder="Enter amount" min="1" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Withdraw
+                        </button>
+                    </form>
+                    <div id="withdrawMessage" class="message"></div>
+                </div>
+            </section>
+
+            <!-- Transfer Section -->
+            <section id="transfer" class="dashboard-section">
+                <div class="operation-card">
+                    <h2><i class="fas fa-exchange-alt"></i> Transfer Money</h2>
+                    <form id="transferForm" class="operation-form">
+                        <div class="form-group">
+                            <label>Your Balance</label>
+                            <input type="text" id="transferBalance" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipientAccount">Recipient Account Number *</label>
+                            <input type="text" id="recipientAccount" placeholder="Enter account number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transferAmount">Amount to Transfer *</label>
+                            <input type="number" id="transferAmount" placeholder="Enter amount" min="1" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Transfer
+                        </button>
+                    </form>
+                    <div id="transferMessage" class="message"></div>
+                </div>
+            </section>
+
+            <!-- Transaction History Section -->
+            <section id="history" class="dashboard-section">
+                <div class="operation-card">
+                    <h2><i class="fas fa-history"></i> Transaction History</h2>
+                    <div id="transactionHistory" class="transaction-table">
+                        <p class="no-data">No transactions found</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statement Section -->
+            <section id="statement" class="dashboard-section">
+                <div class="operation-card">
+                    <h2><i class="fas fa-file-alt"></i> Account Statement</h2>
+                    <p>Generate and download your account statement</p>
+                    <button onclick="generateStatement()" class="btn btn-primary">
+                        <i class="fas fa-download"></i> Generate Statement
+                    </button>
+                    <div id="statementMessage" class="message"></div>
+                </div>
+            </section>
+
+            <!-- Interest Calculator Section -->
+            <section id="interest" class="dashboard-section">
+                <div class="operation-card">
+                    <h2><i class="fas fa-percentage"></i> Interest Calculator</h2>
+                    <form id="interestForm" class="operation-form">
+                        <div class="form-group">
+                            <label>Principal Amount</label>
+                            <input type="text" id="interestBalance" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="interestMonths">Time Period (Months) *</label>
+                            <input type="number" id="interestMonths" placeholder="Enter months" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Interest Rate</label>
+                            <input type="text" value="4.5% per annum" readonly>
+                        </div>
+                        <button type="button" onclick="calculateInterest()" class="btn btn-secondary">
+                            <i class="fas fa-calculator"></i> Calculate
+                        </button>
+                        <div id="interestResult" class="interest-result"></div>
+                    </form>
+                    <div id="interestMessage" class="message"></div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="dashboard-section">
+                <div class="operation-card">
+                    <h2><i class="fas fa-user"></i> Account Details</h2>
+                    <div class="profile-details">
+                        <div class="profile-item">
+                            <label>Account Holder:</label>
+                            <span id="profileName">-</span>
+                        </div>
+                        <div class="profile-item">
+                            <label>Account Number:</label>
+                            <span id="profileAccNum">-</span>
+                        </div>
+                        <div class="profile-item">
+                            <label>Email:</label>
+                            <span id="profileEmail">-</span>
+                        </div>
+                        <div class="profile-item">
+                            <label>Phone:</label>
+                            <span id="profilePhone">-</span>
+                        </div>
+                        <div class="profile-item">
+                            <label>Aadhar Number:</label>
+                            <span id="profileAadhar">-</span>
+                        </div>
+                        <div class="profile-item">
+                            <label>Current Balance:</label>
+                            <span id="profileBalance">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

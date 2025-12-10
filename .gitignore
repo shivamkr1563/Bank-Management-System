@@ -1,0 +1,37 @@
+# Compiled files
+*.exe
+*.o
+*.out
+*.obj
+
+# Data files (user data should not be in repo)
+accounts.txt
+transactions.txt
+statement_*.txt
+
+# Output directory
+output/
+
+# IDE files
+.vscode/
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.sln
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Node modules (if using npm)
+node_modules/
+
+# Python cache (if using Python server)
+__pycache__/
+*.pyc

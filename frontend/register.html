@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - SCBOI Bank</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <h1>SCBOI Bank</h1>
+            </div>
+            <button onclick="window.location.href='index.html'" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </header>
+
+        <div class="main-content">
+            <div class="card register-form-card">
+                <div class="card-header">
+                    <i class="fas fa-user-plus"></i>
+                    <h2>Create New Account</h2>
+                </div>
+                
+                <form id="registerForm" class="form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="accountHolderName">Full Name *</label>
+                            <input type="text" id="accountHolderName" placeholder="Enter your full name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="accountNumber">Account Number *</label>
+                            <input type="text" id="accountNumber" placeholder="Choose account number" required>
+                            <small>Must be unique</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="accountPassword">Password *</label>
+                            <input type="password" id="accountPassword" placeholder="Min 4 characters" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="aadharNumber">Aadhar Number *</label>
+                            <input type="text" id="aadharNumber" placeholder="12 digit Aadhar" maxlength="12" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number *</label>
+                            <input type="tel" id="phoneNumber" placeholder="10 digit mobile" maxlength="10" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="initialDeposit">Initial Deposit *</label>
+                            <input type="number" id="initialDeposit" placeholder="Minimum $500" min="500" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check-circle"></i> Create Account
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </form>
+
+                <div id="registerMessage" class="message"></div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2025 SCBOI Bank. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
